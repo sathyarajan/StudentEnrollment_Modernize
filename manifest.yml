@@ -1,0 +1,12 @@
+---
+memory: 1G
+instances: 1
+env:
+  TRUST_CERTS: api.run.pivotal.io
+applications:
+- name: studentenrollment
+  path: target/studentenrollment.war
+  services:
+  - config-server
+  - student-log-drain
+  - circuit-breaker

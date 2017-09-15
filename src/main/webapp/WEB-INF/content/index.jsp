@@ -29,7 +29,7 @@ body {
 				<input type="text" class="form-control" placeholder="Search">
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="StudentEnrollmentWithStruts">Home</a></li>
+				<li class="active"><a href="/">Home</a></li>
 				<li><a href="signup-input">Signup</a></li>
 				<li><a href="login-input">Login</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -51,8 +51,8 @@ body {
 					us. Or login to access your details, if you are already enrolled.</p>
 			</div>
 
-			<a class="btn btn-primary" href="signup-input">Signup » </a> <a
-				class="btn btn-primary" href="login-input">Login » </a>
+			<a class="btn btn-primary" href="signup-input">Signup ï¿½ </a> <a
+				class="btn btn-primary" href="login-input">Login ï¿½ </a>
 		</div>
 
 		<div></div>
