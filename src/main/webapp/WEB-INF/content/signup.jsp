@@ -8,10 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
-<link href="assets/css/bootstrap-united.css" rel="stylesheet" />
-
-
 <style>
 .error {
 	color: #ff0000;
@@ -35,10 +31,14 @@ input[type="text"],input[type="password"] {
 <title>Student Enrollment Signup</title>
 
 </head>
-
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="assets/css/bootstrap-united.css" rel="stylesheet" />
+<link rel="stylesheet" href="bootstrap/css/bootstrap-datepicker.min.css" />
 <body>
-
-	<script src="bootstrap/js/bootstrap.js">
+<script src="bootstrap/js/jquery-1.8.3.js"></script>
+<script src="bootstrap/js/bootstrap.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="bootstrap/js/bootstrap-datepicker.min.js"></script>
 		
 	</script>
 
@@ -93,41 +93,55 @@ input[type="text"],input[type="password"] {
 							method="post">
 							<fieldset>
 								<legend>Student Enrollment Signup Form</legend>
+								<div class="form-group">
+                                                                                                <label class="col-xs-3 control-label">User Name</label>
+                                <div class="col-xs-7">
                                 <spring:bind path="userName">
                                     <s:input type="text" label="User Name" path="userName"
-                                    class="col-lg-11" placeholder="User Name" />
-                                </spring:bind>
+                                    class="form-control" placeholder="User Name" />
+                                </spring:bind></div></div>
+                                <div class="form-group">
+                                   <label class="col-xs-3 control-label">Password</label>
+                                <div class="col-xs-7">
                                 <spring:bind path="password">
 								    <s:input type="password" path="password"
-									class="col-lg-11" placeholder="Password" />
-                                </spring:bind>
+									class="form-control" placeholder="Password" />
+                                </spring:bind></div></div>
+                                <div class="form-group">
+                                                                                                <label class="col-xs-3 control-label">First Name</label>
+                                <div class="col-xs-7">
                                 <spring:bind path="firstName">
                                     <s:input type="text" label="First Name" path="firstName"
-                                    class="col-lg-11" placeholder="First Name" />
-                                </spring:bind>
+                                    class="form-control" placeholder="First Name" />
+                                </spring:bind></div></div>
+                                <div class="form-group">
+                                                                <label class="col-xs-3 control-label">Last Name</label>
+                                <div class="col-xs-7">
                                 <spring:bind path="lastName">
                                     <s:input type="text" label="Last Name" path="lastName"
-                                    class="col-lg-11" placeholder="Last Name" />
-                                </spring:bind>
-
+                                    class="form-control" placeholder="Last Name" />
+                                </spring:bind></div></div>
+                                <div class="form-group">
+                                <label class="col-xs-3 control-label">Email Address</label>
+                                <div class="col-xs-7">
+                                 <spring:bind path="emailAddress">
+                                                                    <s:input type="text" label="Email Address" path="emailAddress"
+                                                                    class="form-control" placeholder="Email Address" />
+                                                                </spring:bind></div>
+                                </div>
                                 <div class="row">
-                                        <div class='col-sm-3'>
+                                <label class="col-xs-2 control-label">DOB</label>
+                                <div class='col-xs-1'></div>
+                                        <div class='col-xs-5'>
                                             <div class="form-group">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <spring:bind path="dateOfBirth">
-                                                    <s:input type="text" label="Date Of Birth" path="dateOfBirth"
-                                                                                        class="form-control" placeholder="Date Of Birth" />
-                                                    </spring:bind>
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
+                                                <div class='input-group date' id='datePicker'>
+                                                        <spring:bind path="dateOfBirth">
+                                                                <s:input type="text" label="Date Of Birth" path="dateOfBirth"  class="form-control" placeholder="Date Of Birth" />
+                                                        </spring:bind>
+                                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                            </div>
                                             </div>
                                         </div>
-
-                                 <spring:bind path="emailAddress">
-                                    <s:input type="text" label="Email Address" path="emailAddress"
-                                    class="col-lg-11" placeholder="Email Address" />
-                                </spring:bind>
 
 								<div class="col-lg-9 col-lg-offset-3">
 								    <button class="btn btn-default" type="submit">Cancel</button>
@@ -165,83 +179,13 @@ input[type="text"],input[type="password"] {
 		</div>
 	</div>
 
-
-
-	<script>
-		$(function() {
-			$("#dateOfBirthInput").datepicker();
-		});
-		 $(function () {
-           var bindDatePicker = function() {
-        		$(".date").datetimepicker({
-                format:'YYYY-MM-DD',
-        			icons: {
-        				time: "fa fa-clock-o",
-        				date: "fa fa-calendar",
-        				up: "fa fa-arrow-up",
-        				down: "fa fa-arrow-down"
-        			}
-        		}).find('input:first').on("blur",function () {
-        			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
-        			// update the format if it's yyyy-mm-dd
-        			var date = parseDate($(this).val());
-
-        			if (! isValidDate(date)) {
-        				//create date based on momentjs (we have that)
-        				date = moment().format('YYYY-MM-DD');
-        			}
-
-        			$(this).val(date);
-        		});
-        	}
-
-           var isValidDate = function(value, format) {
-        		format = format || false;
-        		// lets parse the date to the best of our knowledge
-        		if (format) {
-        			value = parseDate(value);
-        		}
-
-        		var timestamp = Date.parse(value);
-
-        		return isNaN(timestamp) == false;
-           }
-
-           var parseDate = function(value) {
-        		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
-        		if (m)
-        			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
-
-        		return value;
-           }
-
-           bindDatePicker();
-         });
-	</script>
-
 	<script type="text/javascript">
-		$(function() {
-			var yesButton = $("#yesbutton");
-			var progress = $("#doitprogress");
-
-			yesButton.click(function() {
-				yesButton.button("loading");
-
-				var counter = 0;
-				var countDown = function() {
-					counter++;
-					if (counter == 11) {
-						yesButton.button("complete");
-					} else {
-						progress.width(counter * 10 + "%");
-						setTimeout(countDown, 100);
-					}
-				};
-
-				setTimeout(countDown, 100);
-			});
-
-		});
+	$(document).ready(function() {
+	    $('#datePicker')
+                .datepicker({
+                    format: 'mm/dd/yyyy'
+                });
+                });
 	</script>
 </body>
 </html>
