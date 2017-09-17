@@ -95,15 +95,21 @@ input[type="text"],input[type="password"] {
 						    theme="bootstrap" validate="true" class="bs-example form-horizontal">
 							<fieldset>
 								<legend>Student Enrollment Login Form</legend>
+								<div class="form-group">
+                                                                <label class="col-xs-3 control-label">User Name</label>
+                                <div class="col-xs-7">
                                 <spring:bind path="userName">
 								<s:input type="text" label="User Name" path="userName"
-									class="col-lg-12" placeholder="User Name" />
+									class="form-control" placeholder="User Name" />
                                 </spring:bind>
-                                <s:errors path="userName" class="error"/>
+                                <s:errors path="userName" class="error"/></div></div>
+                                <div class="form-group">
+                                                                                                <label class="col-xs-3 control-label">Password</label>
+                                <div class="col-xs-7">
                                 <spring:bind path="password">
 								<s:input type="password" path="password"
-									class="col-lg-12" placeholder="Password" />
-                                </spring:bind>
+									class="form-control" placeholder="Password" />
+                                </spring:bind></div></div>
 								<div class="col-lg-9 col-lg-offset-3">
 								    <button class="btn btn-default" type="submit">Cancel</button>
 								    <button class="btn btn-primary" type="submit">Login</button>
